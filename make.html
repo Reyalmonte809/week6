@@ -1,0 +1,78 @@
+<body>
+    <div id="menuTarget">?</div>
+    <div id="menuItemsTarget">?</div>
+    <div id="outputDetailsElement">?</div>
+</body>
+<script>
+
+    menu = {
+        breakfast: [
+            { name: "pancakes", price: 3.99 },
+            { name: "ham", price: 4.99 },
+        ],
+        lunch: [
+            { name: "sandwich", price: 6.99 },
+            { name: "soup", price: 2.99 }
+        ]
+    };
+    //.forEach() visists each element once executing some code
+    //.map() creates a array from a array wwith the same number of element
+    //.filter(boolean) creates a array from a array with between 0 and same number of element
+    //.find(boolean) returns the first match from an array
+    //.join("") //glues an array back into a string 
+    // option = name => `<option>${name}</option>`;
+    // select = list => `<select>${list.map(option).join("")}</select>`;
+    // html = select(Object.keys(menu))
+    // console.log(html);
+    // menuTarget.innerHTML = html 
+    function option(text) { //helper-functions?, factory-method?, component-function!
+        const option = document.createElement("option");
+        option.innerText = text
+        return option; //return an option element
+    }
+    function select(list) {
+        const s = document.createElement("select");
+        list.map(option).forEach(o => s.appendChild(o));
+        return s; //return the select element
+    }
+
+    const sections = select(Object.keys(menu));
+    menuTarget.appendChild(sections);
+
+    let section = "";
+
+    sections.addEventListener("change", () => {
+        section = sections.value;
+        sectionList = menu[section];
+        const items = sectionList.map(i => i.name) //get just names
+        console.log(items)
+        const itemList = select(items);
+        menuItemsTarget.innerHTML = "";//remove the old
+        menuItemsTarget.appendChild(itemList);
+
+        itemList.addEventListener("change", () => {
+            const match = menu[section].find(o => o.name == itemList.value);
+            outputDetailsElement.innerText = `${match.name}: ${match.price}`;
+        })
+    });
+
+    // menuTarget.appendChild(select(["apple","banana","cherry"]));
+
+    //1. show menu section Select
+    //2. options for menu cats
+    //3. on select cat
+    //4. show items for just the selected cat
+    //5. on select item
+    //6. show details for the on selected item
+
+    // Object.keys(menu).forEach(m=> menu[m].forEach(i=> console.log(i.name, i.price)))
+    // displayItem = i => console.log("\t", i.name, i.price);
+    // displaySection = m => {
+    //     console.log(m + ":"); //headingf
+    //     menu[m].forEach(displayItem); //child loop
+    // };
+    // Object.keys(menu).forEach(displaySection); //section loop
+
+
+
+</script>
