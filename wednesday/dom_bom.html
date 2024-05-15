@@ -1,0 +1,38 @@
+<body>
+
+    <h2>DOM Document Object Model</h2>
+    <h2> BOM Browser Object model</h2>
+    <h2> SPA Single Page Application</h2>
+
+    <nav>
+        <button id="apple"> Apple Page</button>
+        <button id="banana"> Banana Page</button>
+        <button id="cherry"> Cherry Page</button>
+    </nav>
+    <article id="page">Select a Page</article>
+</body>
+
+<script>
+    const pageContent = {
+        apple: "Apples are for eating!!!",
+        banana: "Bananas are for Pudding!!!",
+        cherry: "Cherries are for ice cream Sundays!!!",
+    }
+    // for(keyPageName in pageContent){
+    //     nav.innerHTML += `<button id= "${keyPageName}">${keyPageName.toUpperCase()}</button>`;
+    // }
+
+    function handlePageButton(event){
+        const pageName= event.target.id;
+        const html = pageContent[pageName];
+        page.innerHTML = html;
+    }
+
+    // apple.addEventlistener("click", handlePageButton);
+    // banana.addEventlistener("click", handlePageButton);
+    // cherry.addEventlistener("click", handlePageButton); /// alternate way below
+    
+const buttons = document.querySelectorAll("nav button");
+[...buttons].forEach(b => b.addEventListener("handle", handlePageButton));
+
+    </script>
