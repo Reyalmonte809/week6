@@ -1,0 +1,70 @@
+<!-- <body>
+     <div id="msgDiv">...</div> 
+
+    <div class="msgArea">...</div>
+    <div class="msgArea">...</div>
+</body> -->
+<!-- <script>
+// const msgDiv = document.getElementById("msgDiv");
+// msgDiv.innerHTML = "Your order is ready.";
+const Area = document.getElementsByClassName("msgArea")
+
+Area[0].innerHTML = "Hello Rey";
+Area[1].innerHTML = "Goodbye Rey";
+
+const allDivs = document.getElementsByTagName("div"); 
+let numDivs = allDivs.length 
+for (let i = 0; i < numDivs; i++) { 
+allDivs[i].style.border = "2px solid red"; 
+} 
+
+</script> -->
+
+<style>
+    .box {
+        display: inline-flex;
+        border: 1px solid black;
+        width: 100px;
+        height: 100px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #addItem {
+        font-size: 3rem;
+    }
+
+    body,
+    article {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+
+<body>
+    <article id="article">
+        <div class="box" id="addItem">+</div>
+        <!-- <div class="box" contenteditable="true">Edit Me</div>
+        <div class="removebutton"></div> -->
+    </article>
+</body>
+<script>
+    addItem.addEventListener("click", () => {
+        const box = document.createElement("div");
+        box.classList.add("box");
+        box.setAttribute("contenteditable", "true");
+        box.innerText = "Edit Me!"
+
+        const removeButton = document.createElement("div");
+        removeButton.classList.add("removeButton");
+        removeButton.innerText = "x";
+        removeButton.addEventListener("click", e => {
+            e.target.parentElement.remove();
+        });
+        box.appendChild(removeButton);
+        article.appendChild(box);
+    });
+</script>

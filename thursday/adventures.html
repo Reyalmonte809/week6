@@ -1,0 +1,107 @@
+<!-- <body style="background-color: beige;">
+<nav id="nav"></nav>
+<div id="content"></div>
+</body>
+<script>
+    function option(text, target, value){
+        const o = document.createElement ("option");
+            o.innerText = text;
+            o.value = value !== undefined ? value : text;
+            target.appendChild(o)
+        
+    }
+    let categories = [ 
+   "Adventures",  
+   "Arts & Crafts",  
+   "Local Sports", 
+   "Museums",  
+   "Wine Tastings",  
+   "Other" 
+]; 
+categories.unshift("Select one...")
+
+content.innerHTML = "?";
+const s = document.createElement("select");
+// const o = document.createElement("option")
+s.size = categories.length;
+// o.innerText = "Select one..."
+// option("select one...");
+categories.forEach(c => option(c, s));
+// s.appendChild(o)
+nav.appendChild(s);
+s.addEventListener("click", ()=> content.innerHTML = categories[s.selectedIndex]);
+
+let activities = [ 
+   { 
+        category: "Adventures",  
+        id: "A101",  
+        name: "Valley Hot Air Balloons",  
+        description: "Enjoy a lovely hot air balloon ride over the valley at sunrise.  Call 800-555-1212 to reserve a date/time after you complete your e-ticket purchase.",  
+        location: "121 S. Main Street", 
+        price: 265.00  
+   }, 
+
+];
+</script> -->
+
+
+
+
+
+
+
+
+<head>
+    <script src="./activities.js"></script>
+</head>
+<body style="background: khaki;">
+    <nav id="nav"></nav>
+    <table id="content"></table>
+</body>
+<script>
+    function option(text, target, value) {
+        const o = document.createElement("option");
+        o.innerText = text;
+        o.value = value !== undefined ? value : text;
+        target.appendChild(o);
+    }
+
+    categories.unshift("Select one...") //insert at beginning
+
+    content.innerHTML = "?";
+    const s = document.createElement("select");
+    s.size = categories.length;
+    // option("Select one...", s, "")
+    categories.forEach(c => option(c, s))
+    nav.appendChild(s);
+
+    s.addEventListener("click", 
+        () => content.innerHTML = activities.filter(
+            a => a.category == categories[s.selectedIndex]
+        ).map( 
+            a => `<tr>
+                <td>${a.id}</td>
+                <td>${a.name}</td>
+                <td>${a.price}</td>
+                </tr>`
+        ).join("")
+    );
+/*
+    function activityRow(a){
+        return  `<tr>
+                <td>${a.id}</td>
+                <td>${a.name}</td>
+                <td>${a.price}</td>
+                </tr>`
+    }
+    function isMatch(a){
+        return a.category == categories[s.selectedIndex];
+    }
+    function getRows(){
+        content.innerHTML = activities.filter(isMatch).map(activityRow).join("");
+    }
+    s.addEventListener("click", getRows);
+    */
+
+
+</script>

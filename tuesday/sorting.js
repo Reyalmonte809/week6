@@ -37,3 +37,11 @@ let products = [
 
 products.sort((a,b)=> a.price - b.price); //switch a.price and b.price for reverse order
 products.forEach(p => console.log(p.item + "$" + p.price.toFixed(2)));
+
+
+
+function display(item) { 
+    console.log(item); 
+    } 
+    let colors = ["Red", "White", "Blue"] 
+    colors.forEach(display); 
